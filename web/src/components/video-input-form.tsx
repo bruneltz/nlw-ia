@@ -11,10 +11,10 @@ import { api } from "@/lib/axios";
 type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success'
 
 const statusMessages = {
-    converting: 'Convertendo...',
-    generating: 'Transcrevendo...',
-    uploading: 'Carregando...',
-    success: 'Sucesso!',
+    converting: 'Converting...',
+    generating: 'Transcribing...',
+    uploading: 'Loading...',
+    success: 'Success!',
   }
 
 interface VideoInputFormProps {
@@ -115,7 +115,7 @@ export function VideoInputForm(props: VideoInputFormProps) {
             ) : (
                 <>
                     <FileVideo className="w-4 h-4" />
-                    Selecione um vídeo
+                    Select a video
                 </>
             )}
 
@@ -123,20 +123,20 @@ export function VideoInputForm(props: VideoInputFormProps) {
         <input type="file" id="video" accept="video/mp4" className="sr-only" onChange={handleFileSelected} />
         <Separator />
         <div className="space-y-2">
-            <Label htmlFor="transcription_prompt">Prompt de transcrição</Label>
+            <Label htmlFor="transcription_prompt">Transcription prompt</Label>
             <Textarea
                 disabled={status != 'waiting'}
                 ref={promptInputRef}
                 id="transcription_prompt"
                 className="h-20 leading-relaxed resize-none"
-                placeholder="Inclua palavras-chave mencionadas no vídeo separadas por vírgula (,)" />
+                placeholder="Include key-words mentioned in the video separated by comma (,)" />
         </div>
         <Button  
             data-success={status=='success'}
             type="submit" className="w-full data-[success=true]:bg-emerald-500" disabled={status != 'waiting'}>
             {status == 'waiting' ? 
             (<>
-            Carregar vídeo
+            Upload video
             <Upload className="w-4 h-4 ml-2"></Upload>
             </>
             ) : statusMessages[status]
