@@ -6,23 +6,23 @@ async function main() {
 
   await prisma.prompt.create({
     data: {
-      title: 'Título YouTube',
-      template: `Seu papel é gerar três títulos para um vídeo do YouTube.
+      title: 'YouTube title',
+      template: `Your task is to generate three titles for a YouTube video.
 
-Abaixo você receberá uma transcrição desse vídeo, use essa transcrição para gerar os títulos.
-Abaixo você também receberá uma lista de títulos, use essa lista como referência para os títulos a serem gerados.
+      Below, you will receive a transcription of the video, use this transcription to generate the titles.
+      Below, you will also receive a list of titles, use this list as a reference for the titles to be generated.
+      
+      The titles should have a maximum of 60 characters.
+      The titles should be catchy and attractive to maximize clicks.
+      
+      Return ONLY the three titles in a list format as shown below:
+      '''      
+      Title 1
+      Title 2
+      Title 3
+      '''
 
-Os títulos devem ter no máximo 60 caracteres.
-Os títulos devem ser chamativos e atrativos para maximizar os cliques.
-
-Retorne APENAS os três títulos em formato de lista como no exemplo abaixo:
-'''
-- Título 1
-- Título 2
-- Título 3
-'''
-
-Transcrição:
+Transcription:
 '''
 {transcription}
 '''`.trim()
@@ -31,25 +31,26 @@ Transcrição:
 
   await prisma.prompt.create({
     data: {
-      title: 'Descrição YouTube',
-      template: `Seu papel é gerar uma descrição sucinta para um vídeo do YouTube.
-  
-Abaixo você receberá uma transcrição desse vídeo, use essa transcrição para gerar a descrição.
+      title: 'YouTube description',
+      template: `Your role is to generate a concise description for a YouTube video.
 
-A descrição deve possuir no máximo 80 palavras em primeira pessoa contendo os pontos principais do vídeo.
+      Below, you will receive a transcription of the video. Please use this transcription to create the description.
+      
+      The description should be in the first person and contain the main points of the video in no more than 80 words.
+      
+      Use compelling words to captivate the attention of the reader.
+      
+      Additionally, at the end of the description, include a list of 3 to 10 hashtags in lowercase, containing keywords related to the video.
+      
+      The return should follow the following format:
+      
+      '''
+      Description.
+      
+      #hashtag1 #hashtag2 #hashtag3 ...
+      '''
 
-Use palavras chamativas e que cativam a atenção de quem está lendo.
-
-Além disso, no final da descrição inclua uma lista de 3 até 10 hashtags em letra minúscula contendo palavras-chave do vídeo.
-
-O retorno deve seguir o seguinte formato:
-'''
-Descrição.
-
-#hashtag1 #hashtag2 #hashtag3 ...
-'''
-
-Transcrição:
+Transcription:
 '''
 {transcription}
 '''`.trim()
